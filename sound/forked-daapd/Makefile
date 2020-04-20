@@ -32,7 +32,7 @@ CATEGORY:=Sound
 TITLE:=iTunes (DAAP) server for Apple Remote and AirPlay
 URL:=https://github.com/ejurgensen/forked-daapd
 DEPENDS:=+libgpg-error +libgcrypt +libgdbm +zlib +libexpat +libunistring \
-	+libevent2 +libdaemon +libantlr3c +confuse +libopus +alsa-lib +libffmpeg-full \
+	+libevent2 +libdaemon +libantlr3c +confuse +alsa-lib +libffmpeg-full \
 	+mxml +libavahi-client +sqlite3-cli +libplist +libcurl +libjson-c \
 	+libprotobuf-c +libgnutls +libsodium +libwebsockets $(ICONV_DEPENDS)
 endef
@@ -72,10 +72,8 @@ define Package/forked-daapd/install
 	$(INSTALL_CONF) ./files/forked-daapd.conf $(1)/etc/forked-daapd.conf
 	$(INSTALL_DIR) $(1)/usr/lib/forked-daapd
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/forked-daapd/* $(1)/usr/lib/forked-daapd/
-	#$(INSTALL_DIR) $(1)/etc/init.d
-	#$(INSTALL_BIN) ./files/forked-daapd.init $(1)/etc/init.d/forked-daapd
-                 $(INSTALL_DIR) $(1)/usr/share/forked-daapd/htdocs	
-	$(CP) $(BUILD_DIR)/$(PKG_SOURCE_SUBDIR)/htdocs/* $(1)/usr/share/forked-daapd/htdocs/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/forked-daapd.init $(1)/etc/init.d/forked-daapd
 endef
 
 $(eval $(call BuildPackage,forked-daapd))
